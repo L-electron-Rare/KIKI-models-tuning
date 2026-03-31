@@ -47,7 +47,7 @@ def main():
 
     # Check GPU
     if torch.cuda.is_available():
-        logger.info(f"GPU: {torch.cuda.get_device_name(0)} ({torch.cuda.get_device_properties(0).total_mem / 1e9:.1f} GB)")
+        logger.info(f"GPU: {torch.cuda.get_device_name(0)} ({torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB)")
     else:
         logger.warning("No GPU available — training will be very slow")
 
@@ -98,8 +98,6 @@ def main():
         gradient_accumulation_steps=4,
         learning_rate=args.lr,
         warmup_ratio=0.03,
-        max_seq_length=args.max_seq_length,
-        packing=True,
         logging_steps=10,
         save_steps=100,
         bf16=torch.cuda.is_available(),
