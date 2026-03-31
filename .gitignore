@@ -20,3 +20,10 @@ build/
 # IDE
 .vscode/
 .idea/
+# ML artifacts
+datasets/raw/
+datasets/processed/
+outputs/
+artifacts/*.json
+*.gguf
+*.safetensors

@@ -1,0 +1,10 @@
+# SFT config for STM32 domain fine-tuning
+base_model: Qwen/Qwen3-8B
+dataset: datasets/processed/stm32_train.jsonl
+output_dir: outputs/sft-stm32
+epochs: 3
+batch_size: 4
+lr: 0.0002
+lora_r: 16
+max_seq_length: 2048
+hub_model_id: clemsail/kiki-stm32-sft

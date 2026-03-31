@@ -1,4 +1,35 @@
 [project]
-name = "placeholder"
+name = "kiki-models-tuning"
 version = "0.1.0"
+description = "CPT/SFT/RLVR model fine-tuning pipeline for the FineFab ecosystem"
 requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.3",
+    "transformers>=4.44",
+    "datasets>=2.20",
+    "peft>=0.12",
+    "trl>=0.10",
+    "bitsandbytes>=0.43",
+    "accelerate>=0.31",
+    "huggingface-hub>=0.24",
+    "evaluate>=0.4",
+    "sentencepiece",
+    "protobuf",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3,<9",
+    "ruff>=0.5",
+]
+
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["kiki_tuning*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
