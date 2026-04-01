@@ -1,28 +1,45 @@
 # KIKI-models-tuning
 
-Pipeline FineFab pour entrainement, evaluation et publication de modeles.
+Fine-tuning pipeline and model registry for domain-specific LLMs.
 
-## Role
-- Separer clairement entrainement et inference.
-- Piloter les cycles CPT -> SFT -> RLVR.
-- Versionner les modeles et datasets avec controles qualite.
+Part of the [FineFab](https://github.com/L-electron-Rare) platform (Factory 4 Life).
 
-## Stack
-- Python 3.12+
-- Tooling fine-tuning (datasets, evaluation, registry)
+## What it does
 
-## Structure cible
-- `src/`: orchestration et logique entrainement
-- `datasets/`: donnees d'entrainement
-- `scripts/`: runs, evaluation, publication
+- Orchestrates full fine-tuning cycles: CPT, SFT, RLVR
+- Supports LoRA, QLoRA, and Unsloth training strategies
+- Manages model versioning with quality gates and evaluation benchmarks
+- Publishes production-ready models to the FineFab model registry
+- Provides dataset validation and preprocessing tooling
 
-## Demarrage rapide
+## Tech stack
+
+Python 3.12+ | Unsloth | PEFT/LoRA | Hugging Face Transformers | Weights & Biases
+
+## Quick start
+
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -e .
 ```
 
-## Roadmap immediate
-- Migrer pipeline fine-tuning depuis mascarade.
-- Mettre en place model registry + hot-swap contract.
-- Integrer controle qualite datasets.
+## Project structure
+
+```
+src/        Training orchestration and logic
+datasets/   Training data and configs
+scripts/    Run, evaluate, and publish workflows
+```
+
+## Related repos
+
+| Repo | Role |
+|------|------|
+| [makelife-cad](https://github.com/L-electron-Rare/makelife-cad) | CAD/EDA web platform |
+| [makelife-hard](https://github.com/L-electron-Rare/makelife-hard) | Hardware design (KiCad) |
+| [makelife-firmware](https://github.com/L-electron-Rare/makelife-firmware) | Embedded firmware |
+| [finefab-life](https://github.com/L-electron-Rare/finefab-life) | Integration runtime and ops |
+
+## License
+
+MIT
