@@ -27,3 +27,10 @@ outputs/
 artifacts/*.json
 *.gguf
 *.safetensors
+
+.env
+.env.local
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
