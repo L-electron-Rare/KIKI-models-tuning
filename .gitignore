@@ -30,6 +30,28 @@ artifacts/*.json
 
 .env
 .env.local
+
+# Secrets & credentials
+.envrc
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.crt
+*.cer
+*.der
+secrets/
+.secrets/
+secrets.json
+credentials.json
+service-account*.json
+id_rsa
+id_ed25519
+acme.json
+*.tfvars
+*.tfvars.json
+terraform.tfstate*
 __pycache__/
 *.pyc
 .venv/
