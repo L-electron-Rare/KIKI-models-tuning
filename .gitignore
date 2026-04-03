@@ -34,3 +34,10 @@ __pycache__/
 *.pyc
 .venv/
 *.egg-info/
+
+# Additional local caches
+.ruff_cache/
+.hypothesis/
+.tox/
+.ipynb_checkpoints/
+.pnpm-store/
