@@ -17,14 +17,15 @@ logger = logging.getLogger("kiki_tuning.train_sft")
 
 def main():
     parser = argparse.ArgumentParser(description="SFT Training with QLoRA")
-    parser.add_argument("--base-model", default="Qwen/Qwen3-8B", help="Base model name or path")
+    parser.add_argument("--base-model", default="Qwen/Qwen2.5-32B-Instruct", help="Base model name or path")
     parser.add_argument("--dataset", default="datasets/processed/train.jsonl", help="Training dataset path")
     parser.add_argument("--output-dir", default="outputs/sft", help="Output directory")
-    parser.add_argument("--epochs", type=int, default=3)
-    parser.add_argument("--batch-size", type=int, default=4)
-    parser.add_argument("--lr", type=float, default=2e-4)
-    parser.add_argument("--lora-r", type=int, default=16)
+    parser.add_argument("--epochs", type=int, default=2)
+    parser.add_argument("--batch-size", type=int, default=1)
+    parser.add_argument("--lr", type=float, default=1e-4)
+    parser.add_argument("--lora-r", type=int, default=8)
     parser.add_argument("--max-seq-length", type=int, default=2048)
+    parser.add_argument("--gradient-accumulation-steps", type=int, default=16)
     parser.add_argument("--push-to-hub", action="store_true")
     parser.add_argument("--hub-model-id", default=None)
     args = parser.parse_args()
@@ -51,20 +52,23 @@ def main():
     else:
         logger.warning("No GPU available — training will be very slow")
 
-    # Quantization config (4-bit NF4)
+    # Quantization config (4-bit NF4) with CPU offload for large models
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
         bnb_4bit_quant_type="nf4",
         bnb_4bit_compute_dtype=torch.bfloat16,
         bnb_4bit_use_double_quant=True,
+        llm_int8_enable_fp32_cpu_offload=True,
     )
 
-    # Load model
+    # Load model with max_memory to prevent OOM during quantization
     logger.info(f"Loading model: {args.base_model}")
+    max_memory = {0: "22GiB", "cpu": "50GiB"}
     model = AutoModelForCausalLM.from_pretrained(
         args.base_model,
         quantization_config=bnb_config,
         device_map="auto",
+        max_memory=max_memory,
         trust_remote_code=True,
     )
     tokenizer = AutoTokenizer.from_pretrained(args.base_model, trust_remote_code=True)
@@ -95,7 +99,7 @@ def main():
         output_dir=args.output_dir,
         num_train_epochs=args.epochs,
         per_device_train_batch_size=args.batch_size,
-        gradient_accumulation_steps=4,
+        gradient_accumulation_steps=args.gradient_accumulation_steps,
         learning_rate=args.lr,
         warmup_ratio=0.03,
         logging_steps=10,

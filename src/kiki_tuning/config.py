@@ -10,12 +10,12 @@ class TrainingConfig:
     """Configuration for SFT training."""
 
     # Model
-    base_model: str = "Qwen/Qwen3-8B"
+    base_model: str = "Qwen/Qwen2.5-32B-Instruct"
     model_revision: str = "main"
 
     # LoRA
-    lora_r: int = 16
-    lora_alpha: int = 32
+    lora_r: int = 8
+    lora_alpha: int = 16
     lora_dropout: float = 0.05
     lora_target_modules: list[str] = field(default_factory=lambda: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"])
 
@@ -25,10 +25,10 @@ class TrainingConfig:
     bnb_4bit_compute_dtype: str = "bfloat16"
 
     # Training
-    num_train_epochs: int = 3
-    per_device_train_batch_size: int = 4
-    gradient_accumulation_steps: int = 4
-    learning_rate: float = 2e-4
+    num_train_epochs: int = 2
+    per_device_train_batch_size: int = 1
+    gradient_accumulation_steps: int = 16
+    learning_rate: float = 1e-4
     warmup_ratio: float = 0.03
     max_seq_length: int = 2048
     packing: bool = True
