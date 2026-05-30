@@ -1,0 +1,8 @@
+{"id": "kicad-led-rc", "prompt": "Build a KiCad schematic JSON: R1 (1k), LED1 between +5V and GND, output as JSON with components and wires.", "domain": "kicad"}
+{"id": "kicad-voltage-divider", "prompt": "Build a KiCad schematic JSON for a voltage divider: R1 (10k) top, R2 (10k) bottom, Vin and Vout. Output JSON.", "domain": "kicad"}
+{"id": "kicad-rc-lowpass", "prompt": "Build a KiCad schematic JSON for an RC low-pass filter: R1 (1k), C1 (1uF), input Vin output Vout. Output JSON.", "domain": "kicad"}
+{"id": "kicad-pullup", "prompt": "Build a KiCad schematic JSON: pullup resistor R1 (10k) from button BTN1 to +3V3, button to GND. Output JSON.", "domain": "kicad"}
+{"id": "kicad-decoupling", "prompt": "Build a KiCad schematic JSON: 100nF decoupling cap C1 between +5V and GND. Output JSON.", "domain": "kicad"}
+{"id": "kicad-led-resistor-pair", "prompt": "Build a KiCad schematic JSON: 2 LEDs (LED1, LED2) each with 470 ohm series resistor (R1, R2) from +3V3 to GND. Output JSON.", "domain": "kicad"}
+{"id": "kicad-conn-header", "prompt": "Build a KiCad schematic JSON: 2-pin header J1 wired to +5V and GND. Output JSON.", "domain": "kicad"}
+{"id": "kicad-transistor-switch", "prompt": "Build a KiCad schematic JSON: NPN transistor Q1 (BC547) base via R1 (1k), collector pulled up via R2 (10k) to +5V, emitter to GND. Output JSON.", "domain": "kicad"}

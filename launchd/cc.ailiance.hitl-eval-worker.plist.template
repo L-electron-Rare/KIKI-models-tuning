@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>cc.ailiance.hitl-eval-worker</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>__VENV_PYTHON__</string>
+    <string>-m</string><string>hitl_eval</string>
+  </array>
+  <key>WorkingDirectory</key><string>__REPO_DIR__</string>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>StandardOutPath</key><string>__HOME__/Library/Logs/hitl-eval-worker.out.log</string>
+  <key>StandardErrorPath</key><string>__HOME__/Library/Logs/hitl-eval-worker.err.log</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>HITL_TRAINER_TOKEN</key><string>__HITL_TRAINER_TOKEN__</string>
+    <key>LIFE_CORE_URL</key><string>https://api.saillant.cc</string>
+    <key>BASE_MODEL_PATH</key><string>__HOME__/KIKI-Mac_tunner/models/Qwen3.6-35B-A3B-MLX-BF16</string>
+    <key>CURRICULUM_LORA_PATH</key><string>__HOME__/KIKI-Mac_tunner/output/eu-kiki-v2-curriculum/qwen36-kicad-dsl</string>
+    <key>OUTPUT_ROOT</key><string>__HOME__/KIKI-Mac_tunner/models/qwen36-kicad-hitl</string>
+    <key>TARGET_LORA</key><string>qwen36-kicad-hitl</string>
+    <key>EVAL_DOMAIN</key><string>kicad</string>
+    <key>EVAL_POLL_SECONDS</key><string>60</string>
+    <key>MLX_LM_GENERATE_BIN</key><string>/Users/clems/omlx-venv/bin/mlx_lm.generate</string>
+    <key>EVAL_MAX_TOKENS</key><string>2048</string>
+  </dict>
+</dict>
+</plist>
