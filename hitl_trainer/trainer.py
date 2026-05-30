@@ -44,7 +44,7 @@ def _build_argv(*, base: Path, resume_from: Path, data_dir: Path, iters: int, lr
         "--iters", str(iters),
         "--learning-rate", f"{lr:.0e}",
         "--batch-size", "1",
-        "--lora-layers", "16",
+        "--num-layers", "16",
     ]
 
 
