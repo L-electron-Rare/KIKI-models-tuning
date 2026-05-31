@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>cc.ailiance.hitl-trainer</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>__VENV_PYTHON__</string>
+    <string>-m</string><string>hitl_trainer</string>
+  </array>
+  <key>WorkingDirectory</key><string>__REPO_DIR__</string>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>StandardOutPath</key><string>__HOME__/Library/Logs/hitl-trainer.out.log</string>
+  <key>StandardErrorPath</key><string>__HOME__/Library/Logs/hitl-trainer.err.log</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>MINIO_ENDPOINT</key><string>https://minio.saillant.cc</string>
+    <key>MINIO_ACCESS_KEY</key><string>__MINIO_ACCESS_KEY__</string>
+    <key>MINIO_SECRET_KEY</key><string>__MINIO_SECRET_KEY__</string>
+    <key>MINIO_BUCKET</key><string>hitl-datasets</string>
+    <key>HITL_TRAINER_TOKEN</key><string>__HITL_TRAINER_TOKEN__</string>
+    <key>LIFE_CORE_URL</key><string>https://api.saillant.cc</string>
+    <key>SHARD_TYPE</key><string>hardware</string>
+    <key>SHARD_FORMAT</key><string>dpo</string>
+    <key>BASE_MODEL_PATH</key><string>__HOME__/KIKI-Mac_tunner/models/Qwen3.6-35B-A3B-MLX-BF16</string>
+    <key>CURRICULUM_LORA_PATH</key><string>__HOME__/eu-kiki-v2-curriculum/qwen36-kicad</string>
+    <key>OUTPUT_ROOT</key><string>__HOME__/KIKI-Mac_tunner/models/qwen36-kicad-hitl</string>
+    <key>TARGET_LORA</key><string>qwen36-kicad-hitl</string>
+    <key>EPOCHS</key><string>2</string>
+    <key>LR_REDUCED</key><string>1e-5</string>
+    <key>POLL_SECONDS</key><string>900</string>
+    <key>LOAD_THRESHOLD</key><string>4.0</string>
+    <key>IDLE_MIN_SECONDS</key><string>1800</string>
+  </dict>
+</dict>
+</plist>

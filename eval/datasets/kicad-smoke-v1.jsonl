@@ -1,0 +1,1 @@
+{"id": "smoke-led", "prompt": "Build a KiCad schematic JSON: R1 1k LED1 from +5V to GND. Output JSON.", "domain": "kicad"}
